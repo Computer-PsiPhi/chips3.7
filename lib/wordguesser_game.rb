@@ -12,7 +12,7 @@ class WordGuesserGame
     letter = letter ? letter.downcase : ''
 
     if letter == '' || !('a'..'z').include?(letter)
-      return false
+      raise ArgumentError
     end
   
     if (@guesses + @wrong_guesses).include?(letter)

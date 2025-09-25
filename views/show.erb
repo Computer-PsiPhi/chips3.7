@@ -14,6 +14,8 @@
 <p class="alert alert-success">
   Word so far:
   <span class="word"><%= @game.word_with_guesses %></span>
+  <span class="word"><%= @game.guesses %></span>
+
 </p>
 
 <form action="/guess" method="post">
@@ -25,4 +27,4 @@
   </div>
 </form>
 
-
+<%= erb :new %>
