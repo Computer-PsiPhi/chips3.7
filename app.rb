@@ -66,7 +66,7 @@ class WordGuesserApp < Sinatra::Base
     ### YOUR CODE HERE ###
     if @game.word_with_guesses == @game.word
       redirect '/win'
-    elsif  @game.wrong_guesses.size >= 7
+    elsif (@game.guesses.size) >= 7
       redirect '/lose'
     else 
       erb :show # You may change/remove this line
