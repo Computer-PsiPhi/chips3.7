@@ -64,7 +64,7 @@ class WordGuesserApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    if @game.word_with_guesses == @game.word
+    if (@game.word_with_guesses) == @game.word
       redirect '/win'
     elsif (@game.wrong_guesses.size) >= 7
       redirect '/lose'
@@ -74,13 +74,19 @@ class WordGuesserApp < Sinatra::Base
   end
 
   get '/win' do
-    ### YOUR CODE HERE ###
+    if (@game.word_with_guesses) == @game.word
+      erb :win
+    else
+      redirect '/show'
+    end
 
-    erb :win # You may change/remove this line
   end
 
   get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    if (@game.wrong_guesses.size) >= 7
+      erb :lose
+    else
+      redirect '/show'
+    end
   end
 end
