@@ -8,25 +8,31 @@ class WordGuesserGame
   end
 
   def guess(letter)
-    raise ArgumentError if letter.nil? || letter == ''
-    ch = letter.downcase
-    raise ArgumentError unless ch >= 'a' && ch <= 'z'
+    letter = letter.to_s[0]
+    letter = letter ? letter.downcase : ''
 
-
-    return false if (@guesses + @wrong_guesses).include?(ch)
-
-    if @word.downcase.include?(ch)
-      @guesses = @guesses + ch
-    else
-      @wrong_guesses = @wrong_guesses + ch
+    if letter == '' || !('a'..'z').include?(letter)
+      return false
     end
-    true
+  
+    if (@guesses + @wrong_guesses).include?(letter)
+      return false
+    end
+  
+    if @word.downcase.include?(letter)
+      @guesses += letter
+    else
+      @wrong_guesses += letter
+    end
+  
+    return true
   end
 
   def word_with_guesses
     @word.chars.map { |c| @guesses.include?(c.downcase) ? c : '-' }.join
   end
 
+  # Class method to get random word 
   def self.get_random_word
     require 'uri'
     require 'net/http'

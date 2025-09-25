@@ -105,7 +105,8 @@ describe WordGuesserGame do
       @game = described_class.new('banana')
     end
 
-    # for a given set of guesses, what should the word look like?
+    # for a given set of guesses, 
+    # what should the word look like?
     @test_cases = {
       'bn' => 'b-n-n-',
       'def' => '------',
